@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "sass-loader": "^10.5.2"
+  },
+  "dependencies": {
+    "crypto-js": "^4.2.0",
+    "dayjs": "^1.11.11",
+    "uview-plus": "^3.6.4"
+  }
+}

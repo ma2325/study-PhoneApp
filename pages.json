@@ -1,0 +1,86 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "智慧教学辅助系统",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "智慧教学辅助系统"
+			}
+		},
+		
+				{
+					"path" : "pages/scanQuestion/scanQuestion",
+					"style" : 
+					{
+						"navigationBarTitleText" : "拍题检索知识点"
+					}
+				},
+				{
+					"path" : "pages/scanResource/scanResource",
+					"style" : 
+					{
+						"navigationBarTitleText" : "学习资源"
+					}
+				},
+				{
+					"path" : "pages/resourceViewer/resourceViewer",
+					"style" : 
+					{
+						"navigationBarTitleText" : "资源预览",
+						"navigationStyle": "custom"
+					}
+				},
+				{
+					"path" : "pages/studyPlan/studyPlan",
+					"style" : 
+					{
+						"navigationBarTitleText" : "复习计划",
+						"navigationStyle": "custom"
+					}
+				}
+	],
+	"globalStyle": {
+		// 导航字体颜色，仅支持 black/white
+		"navigationBarTextStyle": "black",
+		//导航全局标题
+		"navigationBarTitleText": "智慧教学辅助系统",
+		//导航背景颜色
+		"navigationBarBackgroundColor": "#6AB5B4",
+		//下拉显示出来的窗口的背景色 
+		"backgroundColor": "#F5F5F0"
+	},
+	"tabBar": {
+		"color": "#333333",
+		"selectedColor": "#1695F1",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"list": [{
+			"pagePath": "pages/index/index",
+			"iconPath": "static/111.png",
+			"selectedIconPath": "static/111.png",
+			"text": "简介"
+		}, {
+			"pagePath": "pages/scanQuestion/scanQuestion",
+			"iconPath": "static/222.png",
+			"selectedIconPath": "static/222.png",
+			"text": "拍题搜索"
+		}, {
+			"pagePath": "pages/studyPlan/studyPlan",
+			"iconPath": "/static/333.png",
+			"selectedIconPath": "/static/333.png",
+			"text": "复习计划"
+		},
+		{
+			"pagePath": "pages/primary/primary",
+			"iconPath": "static/444.png",
+			"selectedIconPath": "static/444.png",
+			"text": "主页"
+		}] 
+	}
+}
