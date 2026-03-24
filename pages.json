@@ -43,6 +43,12 @@
 						"navigationBarTitleText" : "复习计划",
 						"navigationStyle": "custom"
 					}
+				},
+				{
+					"path": "pages/primary/primary",
+					"style": {
+						"navigationBarTitleText": "主页"
+					}
 				}
 	],
 	"globalStyle": {
@@ -64,7 +70,7 @@
 			"pagePath": "pages/index/index",
 			"iconPath": "static/111.png",
 			"selectedIconPath": "static/111.png",
-			"text": "简介"
+			"text": "学习资料"
 		}, {
 			"pagePath": "pages/scanQuestion/scanQuestion",
 			"iconPath": "static/222.png",

@@ -205,7 +205,11 @@ export default {
 			noteSections: [],
 			
 			// 知识点标记（AI识别的位置）
-			knowledgePoints: []
+			knowledgePoints: [],
+			
+			resourceId: '', // 新增：保存资源ID
+						userId: 'test001' // 临时写死，后续应从全局状态/本地存储中获取真实用户ID
+			
 		};
 	},
 	
@@ -227,8 +231,15 @@ export default {
 			this.jumpToPosition(position);
 		}
 		
-		this.initResource();
-		this.loadKnowledgePoints();
+		if (options.resourceId) {
+			this.resourceId = options.resourceId;
+			this.fetchResourceInfo(this.resourceId);
+		} else if (options.resource) {
+			// 兼容旧的传参方式
+			this.resourceInfo = JSON.parse(decodeURIComponent(options.resource));
+			this.initResource();
+			this.loadKnowledgePoints();
+		}
 	},
 	
 	onReady() {
@@ -259,6 +270,47 @@ export default {
 	},
 	
 	methods: {
+		
+		// 【新增】调用后端接口获取资源详情
+				fetchResourceInfo(resourceId) {
+					uni.showLoading({ title: '加载资源中...' });
+					
+					uni.request({
+						// 请替换为你的真实后端域名
+						url: 'https://your-api-domain.com/api/resource/info', 
+						method: 'GET',
+						data: {
+							userId: this.userId,
+							resourceId: resourceId
+						},
+						success: (res) => {
+							if (res.data.success && res.data.code === 200) {
+								const backendData = res.data.data;
+								// 将后端返回的数据映射到前端需要的字段
+								this.resourceInfo = {
+									id: backendData.resourceId,
+									title: backendData.fileName,
+									type: backendData.fileType,
+									// ⚠️ 注意：目前后端接口缺失了核心的播放/预览地址！
+									url: backendData.fileUrl || '', 
+								};
+								
+								this.initResource();
+								this.loadKnowledgePoints();
+							} else {
+								uni.showToast({ title: res.data.msg || '资源获取失败', icon: 'none' });
+							}
+						},
+						fail: (err) => {
+							console.error('接口请求失败', err);
+							uni.showToast({ title: '网络请求失败', icon: 'none' });
+						},
+						complete: () => {
+							uni.hideLoading();
+						}
+					});
+				},
+		
 		// 初始化资源数据
 		initResource() {
 			if (this.resourceInfo.type === 'ppt') {
