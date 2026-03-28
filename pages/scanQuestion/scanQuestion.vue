@@ -98,7 +98,7 @@
 								<text class="source-detail">匹配相似度: {{ (file.bestScore * 100).toFixed(1) }}%</text>
 							</view>
 							<text class="source-snippet" v-if="file.snippets && file.snippets.length > 0">
-								"...{{ file.snippets[0].substring(0, 40).replace(/[\r\n]/g, '') }}..."
+								"...{{ file.snippets[0].replace(/[\r\n]/g, '') }}..."
 							</text>
 						</view>
 					</view>
@@ -311,7 +311,23 @@ export default {
 					flex: 1; display: flex; flex-direction: column; overflow: hidden;
 					.source-name { font-size: 15px; font-weight: 500; color: #303133; margin-bottom: 4px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 					.source-meta { display: flex; align-items: center; margin-bottom: 4px; .source-detail { font-size: 12px; color: #909399; margin-left: 8px; } }
-					.source-snippet { font-size: 12px; color: #b3b6bc; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+					.source-snippet { 
+						margin-top: 6px;
+						font-size: 12px; 
+						color: #7a7d85; // 字体颜色稍微加深一点点，方便阅读
+						line-height: 1.5;
+						background: #f8f9fa; // 浅灰背景
+						padding: 6px 8px;
+						border-radius: 4px;
+						border-left: 3px solid #dcdfe6; // 左侧引用线
+						
+						/* 核心修改：允许多行显示，最多3行，超出的省略号 */
+						display: -webkit-box;
+						-webkit-box-orient: vertical;
+						-webkit-line-clamp: 3;
+						white-space: normal; // 覆盖原本可能的 nowrap
+						overflow: hidden;
+					}
 				}
 			}
 			.source-right {
